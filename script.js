@@ -60,16 +60,16 @@ class Particle {
       (this.y = mouse.y),
       // (this.x = Math.random() * canvas.width),
       //   (this.y = Math.random() * canvas.height),
-      (this.size = Math.random() * 10 + 2),
+      (this.size = Math.random() * 10 + 1),
       (this.moveX = Math.random() * 3 - 1.5);
     this.moveY = Math.random() * 3 - 1.5;
   }
 
   update() {
-    this.x = this.x + this.moveX;
-    this.y = this.y + this.moveY;
+    this.x += this.moveX;
+    this.y += this.moveY;
     if (this.size > 0.2) {
-      this.size = this.size - 0.1;
+      this.size -= 0.1;
     }
   }
 
@@ -92,10 +92,12 @@ function handleParticles() {
   }
 }
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+ function  animate(){
+  ctx.fillStyle = 'rgba(0,0,0,0.1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   //   drawCircle();
   handleParticles();
+//   await sleep(3)
   requestAnimationFrame(animate);
 }
 
