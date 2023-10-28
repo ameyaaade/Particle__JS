@@ -49,9 +49,11 @@ canvas.addEventListener("mouseleave", function (event) {
 
 class Particle {
   constructor() {
+    // this.x = mouse.x,
+    // this.y = mouse.y,
     (this.x = Math.random() * canvas.width),
       (this.y = Math.random() * canvas.height),
-      (this.size = Math.random() * 5 + 2),
+      (this.size = Math.random() * 10 + 2),
       (this.moveX = Math.random() * 3 - 1.5);
     this.moveY = Math.random() * 3 - 1.5;
   }
@@ -59,6 +61,9 @@ class Particle {
   update() {
     this.x = this.x + this.moveX;
     this.y = this.y + this.moveY;
+    if (this.size > 0.2) {
+        this.size = this.size - 0.1;
+    }
   }
 
   draw() {
@@ -78,9 +83,13 @@ function init() {
 init() 
 
 function handleParticles() {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < particles.length; i++) {
     particles[i].update();
     particles[i].draw();
+    if (particles[i].size <= 0.3) {
+        particles.splice(i,1); // remove the particle if size is less than 0.3
+        i--; // shrink the size of array i.e loop
+    }
   }
 }
 
