@@ -64,6 +64,7 @@ class Particle {
       (this.size = Math.random() * 10 + 1),
       (this.moveX = Math.random() * 3 - 1.5);
     this.moveY = Math.random() * 3 - 1.5;
+    this.color = `hsl(${hue}, 100%, 50%)`;
   }
 
   update() {
@@ -75,7 +76,7 @@ class Particle {
   }
 
   draw() {
-    ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+    ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
@@ -96,7 +97,6 @@ function handleParticles() {
  function  animate(){
   ctx.fillStyle = 'rgba(0,0,0,0.05)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  //   drawCircle();
   handleParticles();
   hue++;
   requestAnimationFrame(animate);
