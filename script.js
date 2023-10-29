@@ -95,6 +95,7 @@ function handleParticles() {
       if (distance < 100) {
         ctx.beginPath();
         ctx.strokeStyle = particles[i].color;
+        ctx.lineWidth = 0.2
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
         ctx.stroke();
